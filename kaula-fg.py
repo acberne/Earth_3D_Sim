@@ -887,14 +887,19 @@ else:
 #print(pt9+pt10)
 
 tot_30=(pt1+pt2+pt3+pt4+pt5+pt6+pt7+pt8+pt9)*fac
-
 Moon_Radius= 1737.4 # km
+Earth_Radius= 6378 # km
 Earth_distance= 384399 # km
 
 fac_2=(Moon_Radius/Earth_distance)**(3) 
+fac_1=(Earth_Radius/Earth_distance)**(3) 
 fac_3=(Moon_Radius/Earth_distance)**(4) 
+fac_4=(Earth_Radius/Earth_distance)**(4) 
 
+scale_2=(fac_1/fac_2)
+scale_3=(fac_4/fac_3)
 
+print(fac_4/fac_3)
 
 vec=np.zeros(7)
 
@@ -921,13 +926,13 @@ def getnorm(l,m):
 
 
 
-tot_20=-((5-3.3)/2)/(k20_meas)
-tot_21=-((1.5+2)/2)/(k21_meas)
-tot_22=((8.5-5.7)/2)/(k22_meas)
-tot_30=((8*1e-3)/2)/(k30_meas)
-tot_31=-((6*1e-3)/2)/(k31_meas)
-tot_32=-((10*1e-3)/2)/(k32_meas)
-tot_33=((8*1e-3)/2)/(k33_meas)
+tot_20=-((5-3.3)/2)/(k20_meas) *scale_2
+tot_21=-((1.5+2)/2)/(k21_meas) *scale_2
+tot_22=((8.5-5.7)/2)/(k22_meas) *scale_2
+tot_30=((8*1e-3)/2)/(k30_meas) *scale_3
+tot_31=-((6*1e-3)/2)/(k31_meas)*scale_3
+tot_32=-((10*1e-3)/2)/(k32_meas)*scale_3
+tot_33=((8*1e-3)/2)/(k33_meas)*scale_3
 
 
 
