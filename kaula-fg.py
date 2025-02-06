@@ -891,15 +891,15 @@ Moon_Radius= 1737.4 # km
 Earth_Radius= 6378 # km
 Earth_distance= 384399 # km
 
-fac_2=(Moon_Radius/Earth_distance)**(3) 
-fac_1=(Earth_Radius/Earth_distance)**(3) 
-fac_3=(Moon_Radius/Earth_distance)**(4) 
-fac_4=(Earth_Radius/Earth_distance)**(4) 
+fac_2=1
+fac_1=1
+fac_3=(Moon_Radius/Earth_distance) 
+fac_4=(Earth_Radius/Earth_distance)
 
-scale_2=(fac_1/fac_2)
+scale_2=(fac_1)
 scale_3=(fac_4/fac_3)
 
-print(fac_4/fac_3)
+print(scale_3)
 
 vec=np.zeros(7)
 
@@ -926,16 +926,19 @@ def getnorm(l,m):
 
 
 
-tot_20=-((5-3.3)/2)/(k20_meas) *scale_2
-tot_21=-((1.5+2)/2)/(k21_meas) *scale_2
-tot_22=((8.5-5.7)/2)/(k22_meas) *scale_2
-tot_30=((8*1e-3)/2)/(k30_meas) *scale_3
-tot_31=-((6*1e-3)/2)/(k31_meas)*scale_3
-tot_32=-((10*1e-3)/2)/(k32_meas)*scale_3
-tot_33=((8*1e-3)/2)/(k33_meas)*scale_3
+tot_20=-1 *scale_2*(2)
+tot_21=-1 *scale_2*(1) #*np.arctan(5.16/6.7)
+tot_22=1 *scale_2
+tot_30=tot_21* 1*scale_3*-0.0033639954083107427
+#*np.arctan(5.16/6.7)
+tot_31=tot_22*-1*scale_3*-0.003321193141498037
+tot_32=tot_21*-1*scale_3*0.003777898371346034
+#*np.arctan(5.16/6.7)
+tot_33=tot_22*1*scale_3*0.004977751461169351
 
-
-
+tot_21=tot_21
+tot_30=tot_30
+tot_32=tot_32
 
 print("Total for 2,0 = ", (tot_20/tot_22)**-1 )
 print("Total for 2,1 = ", (tot_21/tot_22)**-1 )
@@ -958,6 +961,8 @@ vec[6]=tot_33*(-1)
 
 
 np.savetxt('Potentials.txt',vec)
+
+
 
 #print("Total for 3,0 relative to 2,0= ", tot_31/tot_20 )
 

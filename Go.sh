@@ -4,7 +4,7 @@ cwd=$(pwd)
 
 
 ####0
-yes | cp -rf arr_0.npy arr_inp.npy
+yes | cp -rf arr_6.npy arr_inp.npy
 python Read.py ##Make 0 preturbation of interior structure and copy file
 yes | cp -rf ct1.dat $cwd/Tidal_Response/model
 yes | cp -rf ct1_spectrum_enh.dat $cwd/Tidal_Response/model
